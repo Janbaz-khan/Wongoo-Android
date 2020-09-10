@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:meterial="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="Wongoo_Application.Views.AccountSetting" >
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="Account Setting" FontSize="20" HorizontalOptions="Center" Margin="10" TextColor="#663399"/>
+            <meterial:MaterialTextField Placeholder="Name" x:Name="user_name" Text="{Binding Name}"/>
+            <meterial:MaterialTextField Placeholder="New Password" x:Name="Password" Text="{Binding Password}"/>
+            <meterial:MaterialButton Command="{Binding Edit}" BackgroundColor="#663399" Text="Update" />
+        </StackLayout>
+        <!-- Overlay -->
+        <ContentView x:Name="overlay" IsVisible="{Binding ShowPopup}"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 BackgroundColor="#C0808080"
+                 Padding="10, 0">
+
+            <StackLayout Orientation="Vertical" 
+                   BackgroundColor="White" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   Padding="10">
+
+                    <Label FontSize="Subtitle"
+                       Text="Your email is not verified. Please verify to access to your account setting" />
+                    <Button Text="Send me token to verify this account" Command="{Binding SendToken}"/>
+                </StackLayout>
+        </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

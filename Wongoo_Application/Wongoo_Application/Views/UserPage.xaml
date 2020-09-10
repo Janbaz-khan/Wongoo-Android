@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:meterial="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.UserPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <meterial:MaterialCard Elevation="10"  Margin="10" IsClickable="True" ClickCommand="{Binding GoToAccount}">
+                <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                <Image Source="{Binding EmailStatus}" WidthRequest="30" HeightRequest="30" />
+                <Label Text="{Binding Email}" FontSize="18" Padding="10" TextColor="#663399"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="user.png" WidthRequest="30" HeightRequest="30" />
+                    <Label Text="{Binding Name}" FontSize="18" Padding="10" TextColor="#663399"/>
+                </StackLayout>
+                </StackLayout>
+            </meterial:MaterialCard>
+            <!--<Button Text="Account Setting" Margin="10,0,10,0" BorderWidth="1" BorderColor="LightGray" TextColor="Gray" BackgroundColor="#fff" Command="{Binding GoToAccount}"/>-->
+            <Button Text="Allergen Alert" Margin="10,0,10,0" BackgroundColor="#663399" TextColor="White" Padding="5"  Command="{Binding AllergenAlert}"/>
+            <Button  BorderWidth="1"  BorderColor="LightGray" TextColor="#F47357" BackgroundColor="#fff" Text="Logout" Margin="20" Command="{Binding LogOutCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

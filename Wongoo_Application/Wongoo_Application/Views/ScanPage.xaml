@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.ScanPage" >
+    <ContentPage.Content>
+        <material:MaterialCard  Elevation="20" Padding="50" CornerRadius="10" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <StackLayout >
+                <material:MaterialButton BackgroundColor="#663399" HeightRequest="70" IsEnabled="True" x:Name="ScanProduct" Clicked="ScanProduct_Clicked" Text="Scan again" />
+            </StackLayout>
+        </material:MaterialCard>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:WongooNavigation"
+            mc:Ignorable="d"
+             x:Class="Wongoo_Application.Views.Navigation" NavigationPage.HasBackButton="False" BackgroundColor="White" NavigationPage.HasNavigationBar="False">
+
+
+    <local:HomePage  IconImageSource="homepage.png" Title="Home" BackgroundColor="White">
+    </local:HomePage>
+    <local:ScanPage  IconImageSource="barcode.png" Title="Scan"  BackgroundColor="White">
+    </local:ScanPage>
+    <local:UserList IconImageSource="checklist.png" Title="Favourites"  BackgroundColor="White">
+    </local:UserList>
+    <local:HistoryPage IconImageSource="history.png" Title="History"  BackgroundColor="White">
+    </local:HistoryPage>
+    <local:UserPage IconImageSource="menu.png" Title="Menu"  BackgroundColor="White">
+    </local:UserPage>
+</TabbedPage>
+
+    

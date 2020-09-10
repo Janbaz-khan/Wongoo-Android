@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.HomePage" BackgroundColor="White" >
+  
+    <ContentPage.Content >
+        <StackLayout>
+         <material:MaterialCard Elevation="10" BackgroundColor="White">
+                <StackLayout >
+                    <Image Source="logo2.png"  HeightRequest="80" HorizontalOptions="Center"/>
+                    <BoxView BackgroundColor="White" Margin="5" HeightRequest="1"/>
+                    <Label TextColor="#663399" Text="Scan and analyze healthy products!" HorizontalOptions="Center" FontSize="20"/>
+                    <Label TextColor="#663399" HorizontalOptions="Center" Text="Do you want right choice for your health? Wongoo helps you to opt right product by scanning code at a glance."/>
+                </StackLayout>      
+         </material:MaterialCard> 
+
+        <material:MaterialCard  Elevation="10" Margin="10" >
+               <StackLayout>
+                    <material:MaterialTextField BackgroundColor="LightGray" Text="{Binding barcode}" Placeholder="Enter barcode" InputType="Numeric" />
+            <material:MaterialButton x:Name="searchButton" Elevation="2" BackgroundColor="#663399" IsEnabled="True" Text="Search by barcode" Command="{Binding GoToSearch}" />
+                    <material:MaterialButton Elevation="2" x:Name="AddButton"  BackgroundColor="#663399" IsEnabled="True" Text="Add product" Command="{Binding GoToProductPage}" />
+                </StackLayout>
+        </material:MaterialCard>
+            <!--<material:MaterialCard  Elevation="20" CornerRadius="10" Margin="10">
+                <StackLayout >
+                    <material:MaterialButton BackgroundColor="#663399" HeightRequest="70" x:Name="ScanProduct" Clicked="ScanProduct_Clicked" Text="Scan Now" />
+                </StackLayout>
+            </material:MaterialCard>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

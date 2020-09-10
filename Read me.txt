@@ -1,0 +1,8 @@
+Major Changes
+
+- convert it for android only
+- add quantity in view product
+- alert when deleting favourite list and product in list
+- add confirm password
+- image priview in add/edit product
+- allowed favourite to be viewed durring view product

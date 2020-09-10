@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage Title="Add Product" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+            mc:Ignorable="d"
+             x:Class="WongooNavigation.AddProduct" >
+    <ContentPage Title="General" x:Name="tab1" >
+        <ContentPage.Content>
+            <StackLayout Padding="10">
+                <ScrollView>
+                 <StackLayout  HorizontalOptions="CenterAndExpand" Margin="0,8,0,0" Spacing="30">
+                <Label FontSize="Medium" Text="Product Picture"/>
+                        <ImageButton Source="camera.png"  Command="{Binding ProductPicture}" BackgroundColor="White" TabIndex="0" Padding="5" BorderColor="Gray" WidthRequest="50" HeightRequest="50"/>
+                            <Image Source="{Binding ImageFrontPath}" HeightRequest="100" />
+                        <material:MaterialTextField Margin="0" x:Name="ProductName" PlaceholderColor="Red" Text="{Binding ProductName}" Padding="0" TabIndex="1" Placeholder="Product name" ErrorText="Error Text" ReturnType="Next" InputType="Default"/>
+                        <material:MaterialTextField x:Name="GenericName"  Margin="0" Text="{Binding GenericName}" Padding="0" TabIndex="2"  Placeholder="Generic name" ReturnType="Next" ErrorText="Error Text"  InputType="Default" />
+                        <material:MaterialDateField x:Name="Exprydate" Margin="0"  Date="{Binding ExpirryDate}" Placeholder="Expiry date" TabIndex="3"/>
+                        <material:MaterialTextField x:Name="Quantity"  Margin="0" Text="{Binding Quantity}" Padding="0" TabIndex="4"  Placeholder="Quantity" ReturnType="Next" ErrorText="Error Text"  InputType="Default" />
+                        <material:MaterialTextField Margin="0" x:Name="Link" Text="{Binding ProducerWebSite}"  Padding="0" ReturnType="Next" TabIndex="5"  Placeholder="ProducerWebSite" ErrorText="Error Text"  InputType="Default" />
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0"  Text="{Binding Categories}" x:Name="Categories" TabIndex="7"  ReturnType="Next" Placeholder="Categories"/>
+                            <Label Text="Put comma between categories." />
+                        </StackLayout>
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0" x:Name="Country" Text="{Binding Country}"  Padding="0" ReturnType="Next" TabIndex="5"  Placeholder="Countries" ErrorText="Error Text"  InputType="Default" />
+                            <Label Text="Example: USA,UK,Spain,France"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0" x:Name="Brands" Text="{Binding Brands}"  Padding="0" ReturnType="Next" TabIndex="6"  Placeholder="Brands" ErrorText="Error Text"  InputType="Default" />
+                            <Label Text="Put comma between brands"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0" Text="{Binding PurchasePlaces}" x:Name="PurchasePlaces" TabIndex="8"  ReturnType="Next" Placeholder="Purchase Places"/>
+                            <Label Text="Put comma between purchase places"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0" Text="{Binding ManufacturingPlaces}" x:Name="ManufacturingPlaces" TabIndex="9"  ReturnType="Next" Placeholder="Manufacturing Places"/>
+                            <Label Text="Put comma between manufacturing places"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <material:MaterialTextField Margin="0" Text="{Binding Packaging}" x:Name="Packaging" TabIndex="10"  ReturnType="Next" Placeholder="Packaging"/>
+                            <Label Text="Put comma between packaging"/>
+                        </StackLayout>
+                        
+                     <material:MaterialButton x:Name="GoToInredients" BackgroundColor="#663399" Clicked="NextToInredients_Clicked" TabIndex="12" Text="Next"/>
+                    </StackLayout>
+                </ScrollView>
+            <StackLayout>
+            </StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Ingredients" >
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Padding="10">
+                    <Label Text="Ingredients Picture" FontSize="Medium"/>
+                    <ImageButton Source="camera.png" Command="{Binding IngredientPicture}" TabIndex="13" BackgroundColor="White" Padding="5" BorderColor="Gray" WidthRequest="50" HeightRequest="50"/>
+                    <Image Source="{Binding ImageIngredientPath}" HeightRequest="100" />
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding IngredientsList}"  TabIndex="14" ReturnType="Next" x:Name="Ingredients" InputType="Chat" Padding="0"  Placeholder="Ingredients List" ErrorText="Error Text" />
+                        <Label Text="Put comma between Ingredients list"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding Allergens}" x:Name="Allergens" TabIndex="15"  ReturnType="Next" Placeholder="Allergens"/>
+                        <Label Text="Put comma between allergens"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding Traces}" x:Name="Traces" TabIndex="15"  ReturnType="Next" Placeholder="Traces"/>
+                        <Label Text="Put comma between traces"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding Labels}" x:Name="Labels" TabIndex="15"  ReturnType="Next" Placeholder="Labels"/>
+                        <Label Text="Put comma between labels"/>
+                    </StackLayout>
+
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding EmbCodes}" x:Name="EmbCodes" TabIndex="15"  ReturnType="Next" Placeholder="Emb Codes"/>
+                        <Label Text="Put comma between emb codes"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding Stores}" x:Name="Stores" TabIndex="15"  ReturnType="Next" Placeholder="Stores"/>
+                        <Label Text="Put comma between stores"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding Origins}" x:Name="Origins" TabIndex="15"  ReturnType="Next" Placeholder="Origins"/>
+                        <Label Text="Put comma between origins"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <material:MaterialTextField Margin="0" Text="{Binding AdditivesTags}" x:Name="AdditivesTags" TabIndex="15"  ReturnType="Next" Placeholder="Additives "/>
+                        <Label Text="Put comma between additives"/>
+                    </StackLayout>
+
+
+                    <material:MaterialButton x:Name="GoToNutrition" BackgroundColor="#663399" Clicked="GoToNutrition_Clicked" TabIndex="22"  Text="Next"/>
+
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Nutriments" >
+        <ContentPage.Content>
+            <StackLayout Margin="10" IsVisible="True">
+                <ScrollView>
+                    <StackLayout>
+                        <StackLayout  Orientation="Horizontal">
+                            <material:MaterialCheckbox IsSelected="{Binding NutritionFlag}" Text="Nutrition facts are not specified on the product"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="LightGray" HeightRequest="1"/>
+                        <StackLayout IsVisible="{Binding LockNutrition}">
+                            <StackLayout>
+                                <Picker ItemsSource="{Binding RadioChoices}" Title="{Binding NutrimentsPer}" SelectedItem="{Binding NutrimentsPer}"/>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding ServingSize}" TabIndex="22" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="ServingSize" ErrorText="Error Text" />
+                                <ImageButton Source="camera.png" Command="{Binding NutritionPicture}" BackgroundColor="White" Padding="5" BorderColor="Gray" WidthRequest="50" HeightRequest="50"/>
+                            </StackLayout>
+                            <Image Source="{Binding ImageNutritionPath}" HeightRequest="100" />
+                            <BoxView BackgroundColor="LightGray" HeightRequest="1" Margin="5"/>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Energy}" TabIndex="23"  ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Energy KJ" ErrorText="Error Text" />
+                                <Label Margin="0,20,0,0" Text="KJ"  />
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding EnergyKcal}" TabIndex="24" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Energy Kcal" ErrorText="Error Text" />
+                                <Label Text="Kcal" Margin="0,20,0,0" />
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Fiber}" TabIndex="24" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Fiber" ErrorText="Error Text" />
+                                <Picker  Title="Select Unit" ItemsSource="{Binding Units}"  TabIndex="25" SelectedItem="{Binding FiberUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding SaturatedFat}" TabIndex="26" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Saturated Fats" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="27" SelectedItem="{Binding SaturatedFatUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Sugars}" TabIndex="28" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Sugars" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}"  SelectedItem="{Binding SugarsUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Salt}" TabIndex="29" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Salt" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="30" SelectedItem="{Binding SaltUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding FruitsVegetables}"  TabIndex="31" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Fruits Vegetables nuts etc" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="32" SelectedItem="{Binding FruitsVegetablesUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Proteins}" TabIndex="33" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Proteins" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="34" SelectedItem="{Binding ProteinsUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Sodium}" TabIndex="35" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Sodium" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="36" SelectedItem="{Binding SodiumUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Margin="0" Text="{Binding Carbohydrates}" TabIndex="37" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Carbohydrates" ErrorText="Error Text" />
+                                <Picker Title="Select Unit" ItemsSource="{Binding Units}" TabIndex="38" SelectedItem="{Binding CarbohydratesUnit}" HorizontalOptions="FillAndExpand"></Picker>
+                            </StackLayout>
+                            <StackLayout  Orientation="Horizontal" Spacing="20">
+                                <material:MaterialTextField Text="{Binding Alcohol}" TabIndex="39" ReturnType="Next" InputType="Numeric" WidthRequest="250" Padding="0"  Placeholder="Alcohol" ErrorText="Error Text" />
+                                <Label Text="%vol" Margin="0,20,0,0"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout >
+                    <material:MaterialButton Elevation="2" BackgroundColor="#663399" Text="Add Product" TabIndex="40" x:Name="Submit" Clicked="Submit_Clicked"  Command="{Binding AddProductCommand}" />
+                </StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

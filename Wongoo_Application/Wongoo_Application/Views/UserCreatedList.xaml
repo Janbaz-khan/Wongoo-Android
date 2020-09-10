@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:meterial="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="Wongoo_Application.Views.UserCreatedList" >
+    <ContentPage.Content>
+        <StackLayout>
+            <meterial:MaterialCard Elevation="10" CornerRadius="10" Margin="10">
+                <ListView x:Name="SelectedList" ItemTapped="SelectedList_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding ProductName}" Detail="{Binding Barcode}">
+                                <TextCell.ContextActions>
+                                    <MenuItem Text="Delete" x:Name="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}"/>
+                                </TextCell.ContextActions>
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </meterial:MaterialCard>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

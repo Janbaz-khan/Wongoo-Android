@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="Wongoo_Application.Views.Login" Title="Login" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+            <Grid BackgroundColor="White" IsVisible="{Binding ShowLogin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="0,10,0,0" Grid.Row="0">
+                <Label Text="Wongoo Login" TextColor="#663399" FontSize="Title" />
+                <Image Source="person.png" Opacity="0.6" HeightRequest="50" WidthRequest="50" Margin="0,10,0,0"/>
+            </StackLayout>
+            <Grid RowSpacing="20" Grid.Row="1" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="ProfileImage.png" HeightRequest="90" VerticalOptions="EndAndExpand"/>
+                <Entry Grid.Row="1" Text="{Binding Email}" ReturnType="Next" BackgroundColor="White" Placeholder="Email Address" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry Grid.Row="2" Text="{Binding Password}" BackgroundColor="White" Placeholder="Password" IsPassword="True" FontSize="16"  PlaceholderColor="#bababa" />
+                <Button Text="LogIn" Command="{Binding Login}" IsEnabled="{Binding EnableControl}" BackgroundColor="#663399" TextColor="White" HeightRequest="50" VerticalOptions="Start" Grid.Row="3"/>
+                <!--<Label Text="Forgot Password ? GetHelp"  HorizontalOptions="Center" Grid.Row="4" Margin="0,10,0,0" FontSize="12"/>-->
+                <Label HorizontalOptions="Center" Grid.Row="4" Margin="0,10,0,0" FontSize="12">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Forgot Password ?" />
+                            <Span Text=" Click Here"
+                            TextColor="Blue"
+                             TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ForgotPassword}"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label BackgroundColor="#bababa" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                    <!--<Image Source="facebook.png" Grid.Column="1" VerticalOptions="Center" Margin="10,0,10,0"/>-->
+                    <Label Text=" Login with " Grid.Column="1"  TextColor="#663399" Margin="10,0,10,0" VerticalOptions="Center"/>
+                    <Label BackgroundColor="#bababa" Grid.Column="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
+                </Grid>
+                <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="CenterAndExpand" Grid.Row="6">
+                    <ImageButton Command="{Binding FacebookLogin}" Source="facebook.png" WidthRequest="40"  BackgroundColor="White"/>
+                    <ImageButton Command="{Binding GoogleLogin}" Source="google.png" WidthRequest="40"  BackgroundColor="White"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout Grid.Row="2" BackgroundColor="#ffffff">
+                <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
+                <Button Text="User Registration" TextColor="#663399" BackgroundColor="White" Command="{Binding GoToRegistration}"/>
+            </StackLayout>
+        </Grid>
+            
+          
+    </ContentPage.Content>
+</ContentPage>

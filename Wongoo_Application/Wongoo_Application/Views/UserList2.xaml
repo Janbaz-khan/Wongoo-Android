@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.UserList2">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Favourite products" Margin="10,0,10,0" FontSize="20" TextColor="#663399" FontAttributes="Bold"/>
+            <BoxView BackgroundColor="LightGray" HeightRequest="1" Margin="10,0,0,10"/>
+            <Button Text="+Add List" x:Name="AddList" Clicked="AddList_Clicked" VerticalOptions="Start"/>
+            <ListView Margin="0" x:Name="ProductList" ItemTapped="ProductList_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="ProductList_Refreshing">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <TextCell   Text="{Binding ListName}"  Detail="{Binding PrintProduct}">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Delete" x:Name="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

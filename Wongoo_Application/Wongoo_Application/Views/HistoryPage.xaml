@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.HistoryPage" x:Name="history">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="History" Margin="10,0,10,0" FontSize="20" TextColor="#663399" FontAttributes="Bold"/>
+            <BoxView BackgroundColor="LightGray" HeightRequest="1" Margin="10,0,0,10"/>
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsVisible="{Binding NotFound}" Text="No history found" FontAttributes="Italic" Margin="50" />
+            <ListView Margin="0" x:Name="ProductList" ItemTapped="ProductList_ItemTapped" ItemsSource="{Binding FavList.result}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}" RefreshCommand="{Binding RefreshData}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding product_name}" Detail="{Binding _id}" TextColor="#663399">
+                            <TextCell.ContextActions>
+                                <MenuItem Text="Delete" Command="{Binding Path=BindingContext.Delete,Source={x:Reference Name=history} }" CommandParameter="{Binding .}"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

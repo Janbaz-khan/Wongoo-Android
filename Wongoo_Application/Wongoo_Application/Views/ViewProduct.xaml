@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage Padding="10" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="WongooNavigation.ViewProduct" xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:Wongoo_Application.Shared"
+            android:TabbedPage.OffscreenPageLimit="2"
+            android:TabbedPage.IsSwipePagingEnabled="True"
+            >
+
+    <ContentPage Title="Overview">
+        <ContentPage.Content >
+            <RefreshView IsRefreshing="{Binding IsRefresh}" RefreshColor="#663399" Command="{Binding RefreshData}">
+
+                <StackLayout>
+                    <StackLayout BackgroundColor="#FA6759" Padding="10" Margin="10,0,10,0" IsVisible="{Binding AllergenAllertVisible}">
+                        <Label Text="{Binding AllergenAllertText}" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                    </StackLayout >
+                    <StackLayout BackgroundColor="#F47357" Padding="10" Margin="10,0,10,10" IsVisible="{Binding HaramAlert}">
+                        <Label Text="Haram for muslims" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout >
+                    <ScrollView >
+                        <StackLayout IsVisible="{Binding EnableTab}">
+                            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <!--<ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}"/>-->
+                            </StackLayout>
+                            <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10" >
+
+                                <StackLayout Orientation="Vertical">
+                                    <ff:CachedImage LoadingPlaceholder="logo.png" ErrorPlaceholder="close.png"  Source="{Binding productImages.ImageFrontUrl}">
+                                        <ff:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ViewProductImage}"/>
+                                        </ff:CachedImage.GestureRecognizers>
+                                    </ff:CachedImage>
+                                    <Label  Margin="0,30,0,0" TextColor="#663399" FontSize="Medium" Grid.Column="0" Text="{Binding MainProduct.Product.ProductName}" />
+                                </StackLayout>
+                            </material:MaterialCard>
+                            <StackLayout>
+                                <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="100">
+                                            <Label Text="Nutriscore Grade"/>
+                                            <Label Text="Add to Favourite"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <Image Source="{Binding NutriScoreImage}" HeightRequest="80"/>
+                                            <Frame WidthRequest="100"  HeightRequest="40" Margin="40,0,0,0">
+                                                <ImageButton x:Name="Buttonfavourite" Command="{Binding AddToFavourites}" Aspect="AspectFit" BackgroundColor="Transparent" />
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </material:MaterialCard>
+                                <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10">
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="50">
+                                            <Label Text="Quantity: " FontAttributes="Bold"/>
+                                            <Label  Text="{Binding Quantity}" Margin="40,0,0,0"/>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                                        <StackLayout Orientation="Horizontal" Spacing="50">
+                                            <Label Text="Expiry Date: " FontAttributes="Bold" TextColor="Red" FontSize="13" Margin="0,25,0,0"/>
+                                            <Label Text="{Binding  ExpirationDate}" FontSize="13" Margin="0,25,0,0"/>
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="Gray"/>
+                                        <StackLayout Orientation="Horizontal" Spacing="10">
+                                            <Label Text="Nova Group: " FontAttributes="Bold" Margin="0,25,0,0"/>
+                                            <Label Text="{Binding NovaGroup}" IsVisible="{Binding novaEmpty}"  Margin="0,25,0,0"/>
+                                            <Image Source="{Binding NovaGroup}" HeightRequest="50" IsVisible="{Binding novaNotEmpty}" WidthRequest="50" Margin="0,10,0,0"/>
+                                        </StackLayout>
+                                       
+                                    </StackLayout>
+                                </material:MaterialCard>
+                                <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10">
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Categories" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ListView ItemsSource="{Binding Category}" x:Name="CatView" ItemTapped="CatView_ItemTapped"  HeightRequest="{Binding CatListHeight}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Brands" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout Spacing="0">
+                                            <ListView ItemsSource="{Binding Brands}" x:Name="brands" ItemTapped="brands_ItemTapped" HeightRequest="{Binding BrandsListHeight}" >
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Labels" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout >
+                                            <ListView ItemsSource="{Binding Labels}" x:Name="labels" ItemTapped="labels_ItemTapped"  HeightRequest="{Binding LabelHeight}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Packaging" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout >
+                                            <ListView  ItemsSource="{Binding Packages}" x:Name="packaging" ItemTapped="packaging_ItemTapped" HeightRequest="{Binding PackHeight}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Additives" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <ListView ItemsSource="{Binding Additives}" x:Name="additives" ItemTapped="additives_ItemTapped" HeightRequest="{Binding AdditiveHeight}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Manufacturig places" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.ManufacturingPlaces}">
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Purchase places" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.PurchasePlaces}">
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Countries" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.Countries}">
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Stores" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.Stores}">
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="EMB Codes" TextColor="#663399" FontSize="20"/>
+                                        </StackLayout>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.EmbCodes}">
+                                        </StackLayout>
+                                    </StackLayout>
+                                </material:MaterialCard>
+
+                            </StackLayout>
+                        </StackLayout>
+                        <!-- Overlay -->
+                    </ScrollView>
+                    <ContentView x:Name="overlay" IsVisible="{Binding ShowPopup}"
+                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 BackgroundColor="#C0808080"
+                 Padding="10, 0">
+                        <StackLayout Orientation="Vertical" 
+                   BackgroundColor="White" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   Padding="10">
+
+                            <Label FontSize="Subtitle"
+                       Text="Product not found against this barcode,do you want to add this product? " />
+                            <BoxView Color="Gray" 
+                         HorizontalOptions="FillAndExpand" 
+                         HeightRequest="1.5">
+                            </BoxView>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <material:MaterialButton Text="Add Product" 
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center" Command="{Binding GotoAddProduct}"
+                        />
+                                <material:MaterialButton Text="No" 
+                      VerticalOptions="CenterAndExpand" ButtonType="Elevated" Command="{Binding Cancel}"
+                      HorizontalOptions="Center"
+                     />
+                            </StackLayout>
+                        </StackLayout>
+                    </ContentView>
+                    <StackLayout>
+                        <Button  x:Name="EditButton" Text="Edit" Clicked="EditButton_Clicked" IsVisible="{Binding EnableTab}" BackgroundColor="White" BorderColor="#34495e" BorderWidth="1" TextColor="#34495e" />
+                    </StackLayout>
+                </StackLayout>
+
+            </RefreshView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Ingredients" IsVisible="{Binding EnableTab}">
+        <ContentPage.Content>
+
+            <ScrollView>
+                <StackLayout>
+                    <material:MaterialCard Elevation="5" CornerRadius="10" Margin="10" >
+                        <StackLayout Orientation="Vertical" Spacing="20" HorizontalOptions="CenterAndExpand">
+                            <ff:CachedImage LoadingPlaceholder="logo.png" ErrorPlaceholder="close.png" Source="{Binding productImages.ImageIngredientsUrl}" >
+                                <ff:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ViewIngredientImage}"/>
+                                </ff:CachedImage.GestureRecognizers>
+                            </ff:CachedImage>
+                            <Label  Margin="0,0,0,0" TextColor="#663399" Grid.Column="0" FontSize="20" Text="Ingredients" />
+                        </StackLayout>
+                    </material:MaterialCard>
+
+                    <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10" >
+                        <Label Text="{Binding MainProduct.Product.IngredientsText}" FontSize="20"/>
+
+                    </material:MaterialCard>
+                    <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10">
+                        <StackLayout>
+                            <StackLayout>
+                                <Label Text="Allergens" TextColor="#663399" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Allergens}">
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Traces" TextColor="#663399" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Traces}">
+                            </StackLayout>
+                            <StackLayout>
+                                <Label Text="Origins" TextColor="#663399" FontSize="20"/>
+                            </StackLayout>
+                            <StackLayout BindableLayout.ItemsSource="{Binding MainProduct.Product.Origins}">
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </material:MaterialCard>
+
+
+                </StackLayout>
+
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Nutriments" IsVisible="{Binding EnableTab}">
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Spacing="15">
+                    <material:MaterialCard Elevation="5" CornerRadius="10" Margin="10" >
+                        <StackLayout Orientation="Vertical" Spacing="20" HorizontalOptions="CenterAndExpand">
+                            <ff:CachedImage LoadingPlaceholder="logo.png" ErrorPlaceholder="close.png" Source="{Binding productImages.ImageNutritionUrl}" >
+                                <ff:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ViewNutritionImage}"/>
+                                </ff:CachedImage.GestureRecognizers>
+                            </ff:CachedImage>
+                            <Label  Margin="0,0,0,0" Grid.Column="0" TextColor="#663399" FontSize="20" Text="Nutriments"/>
+                        </StackLayout>
+                    </material:MaterialCard>
+                    <material:MaterialCard Elevation="10" CornerRadius="10" Margin="10" >
+                        <StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Gray"  CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label Text="Energy " FontAttributes="Bold" FontSize="20" />
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.Energy}"/>
+                                <Label FontSize="20"  Text="KJ"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Accent" CornerRadius="50" WidthRequest="15" HeightRequest="1" />-->
+                                <Label FontSize="20"  FontAttributes="Bold" Text="Fiber " />
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.Fiber}"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.FiberUnit}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Green" CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label FontSize="20"  FontAttributes="Bold" Text="Proteins " />
+                                <Label FontSize="20" Text="{Binding MainProduct.Product.Nutriments.Proteins}"/>
+                                <Label FontSize="20" Text="{Binding MainProduct.Product.Nutriments.ProteinsUnit}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Black" CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label FontSize="20" Text="Sodium "  FontAttributes="Bold"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.Sodium}"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.SodiumUnit}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="OrangeRed" CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label FontSize="20" Text="Sugars "  FontAttributes="Bold"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.Sugars}"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.SugarsUnit}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Blue" CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label FontSize="20" Text="Saturated Fat "  FontAttributes="Bold"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.SaturatedFat}"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.SaturatedFatUnit}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <!--<BoxView BackgroundColor="Blue" CornerRadius="50" WidthRequest="15" HeightRequest="1"/>-->
+                                <Label FontSize="20"  FontAttributes="Bold" Text="Fruits Vegetables Nuts Colza Walnut Olive Oils"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.NutriscoreData.FruitsVegetablesNutsColzaWalnutOliveOils}"/>
+                                <Label FontSize="20"  Text="{Binding MainProduct.Product.Nutriments.FruitsVegetablesNutsColzaWalnutOliveOilsUnit}"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </material:MaterialCard>
+
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+
+    </ContentPage>
+
+</TabbedPage>

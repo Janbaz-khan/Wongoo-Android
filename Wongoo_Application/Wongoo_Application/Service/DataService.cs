@@ -18,7 +18,7 @@ namespace Wongoo_Application.Service
         public string Searchby = ServerIP.IP + "/api/application/products/all";
         public decimal totalDoc = 0;
         private readonly List<Result> _data = new List<Result>();
-
+         
         public async Task<List<Result>> getProductsByCat(string Property,string PropertyName, int pagenumber)
         {
             var catUrl = Searchby + "/" + pagenumber + "/"+Property+"/" + PropertyName;

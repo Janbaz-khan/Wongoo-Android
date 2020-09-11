@@ -22,7 +22,6 @@ namespace Wongoo_Application.Views
             InitializeComponent();
 
         }
-
         private async void SendEmail_Clicked(object sender, EventArgs e)
         {
             if (!CrossConnectivity.Current.IsConnected)
@@ -31,22 +30,34 @@ namespace Wongoo_Application.Views
                 UserDialogs.Instance.HideLoading();
                 return;
             }
-            string url = ServerIP.IP+"/api/application/users/forgetpassword";
-            if (EmailTextBox.Text == null ||EmailTextBox.Text=="")
+            string url = ServerIP.IP + "/api/application/users/forgetpassword";
+            if (EmailTextBox.Text == null || EmailTextBox.Text == "")
             {
                 CrossToastPopUp.Current.ShowToastMessage("Please Enter Email Address");
                 return;
             }
             using (HttpClient http = new HttpClient())
             {
-                forgotPassEmail forgotPassEmail = new forgotPassEmail();
-                forgotPassEmail.email = EmailTextBox.Text;
-                var json = JsonConvert.SerializeObject(forgotPassEmail);
-                var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-                var res =await http.PostAsync(url,stringContent);
-                string msg = res.Content.ReadAsStringAsync().Result;
-                await DisplayAlert(res.StatusCode.ToString(), msg, "OK");
-                await Navigation.PopModalAsync();
+                try
+                {
+                    UserDialogs.Instance.ShowLoading("Send Password to your email address");
+                    forgotPassEmail forgotPassEmail = new forgotPassEmail();
+                    forgotPassEmail.email = EmailTextBox.Text;
+                    var json = JsonConvert.SerializeObject(forgotPassEmail);
+                    var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var res = await http.PostAsync(url, stringContent);
+                    string msg = res.Content.ReadAsStringAsync().Result;
+                    await DisplayAlert("Success", "Password has been sent to your email address,you may change the password later.", "OK");
+                    await Navigation.PopModalAsync();
+                    UserDialogs.Instance.HideLoading();
+                }
+                catch (Exception a)
+                {
+
+                    await DisplayAlert("Failed", a.Message, "OK");
+                    UserDialogs.Instance.HideLoading();
+                }
+
             }
         }
     }

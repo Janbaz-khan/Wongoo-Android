@@ -149,7 +149,7 @@ namespace Wongoo_Application.ViewModels
                     SecureStorage.Remove("Token");
                     await Application.Current.MainPage.Navigation.PopModalAsync();
                     await Application.Current.MainPage.Navigation.PopToRootAsync();
-                   // await Application.Current.MainPage.Navigation.PushAsync(new Login());
+                    await Application.Current.MainPage.Navigation.PushAsync(new Login());
                 }
             }
 

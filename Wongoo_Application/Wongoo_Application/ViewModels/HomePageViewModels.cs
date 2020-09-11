@@ -96,7 +96,6 @@ namespace Wongoo_Application.ViewModels
                 CheckProductFields message = await DataService.CheckProductAsync(barcode);
                 if (message.message.Contains("not approved"))
                 {
-
                     string msg = "Product Exists! This barcode: " + barcode + " is not yet approved by the admin.";
                     CrossToastPopUp.Current.ShowToastMessage(msg, Plugin.Toast.Abstractions.ToastLength.Long);
                     UserDialogs.Instance.HideLoading();
@@ -106,7 +105,6 @@ namespace Wongoo_Application.ViewModels
                 }
                 else if (message.message.Contains("product found"))
                 {
-
                     string msg = "Product Exists!";
                     CrossToastPopUp.Current.ShowToastMessage(msg, Plugin.Toast.Abstractions.ToastLength.Long);
                     await Application.Current.MainPage.Navigation.PushModalAsync(new ViewProduct(barcode));
